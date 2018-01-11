@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>我要许愿-许愿网</title>
+
+<link rel="stylesheet" href="__STATIC__layer.css" />
+<link rel="shortcut icon" href="/Public/Common/Images/favicon.ico" />
+<script src="__STATIC__js/amazeui.min.js"></script>
+<link rel="stylesheet" href="__STATIC__css/amazeui.min.css" /> 
+<script type="text/JavaScript" src='__STATIC__js/jquery.min.js'></script>
+<script type="text/javascript" src="__STATIC__layer/layer.js"></script>
+<style>
+.basic-grey{
+margin-left:auto;
+margin-right:auto;
+max-width: 500px;
+background: #F7F7F7;
+padding: 25px 15px 25px 10px;
+font: 12px Georgia, "Times New Roman", Times, serif;
+color: #888;
+text-shadow: 1px 1px 1px #FFF;
+border:1px solid #E4E4E4;
+}
+.basic-grey h1 {
+font-size: 25px;
+padding: 0px 0px 10px 40px;
+display: block;
+border-bottom:1px solid #E4E4E4;
+margin: -10px -15px 30px -10px;;
+color: #888;
+}
+.basic-grey h1>span {
+display: block;
+font-size: 11px;
+}
+.basic-grey label {
+display: block;
+margin: 0px;
+}
+.basic-grey label>span {
+float: left;
+width: 20%;
+text-align: right;
+padding-right: 10px;
+margin-top: 10px;
+color: #888;
+}
+.basic-grey input[type="text"],.basic-grey input[type="password"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select {
+border: 1px solid #DADADA;
+color: #888;
+height: 30px;
+margin-bottom: 16px;
+margin-right: 6px;
+margin-top: 2px;
+outline: 0 none;
+padding: 3px 3px 3px 5px;
+width: 70%;
+font-size: 12px;
+line-height:15px;
+box-shadow: inset 0px 1px 4px #ECECEC;
+-moz-box-shadow: inset 0px 1px 4px #ECECEC;
+-webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+.basic-grey label{margin-top: 5px;}
+.basic-grey textarea{
+padding: 5px 3px 3px 5px;
+}
+.basic-grey select {
+background: #FFF url('down-arrow.png') no-repeat right;
+background: #FFF url('down-arrow.png') no-repeat right);
+appearance:none;
+-webkit-appearance:none;
+-moz-appearance: none;
+text-indent: 0.01px;
+text-overflow: '';
+width: 70%;
+height: 35px;
+line-height: 25px;
+}
+.basic-grey textarea{
+height:100px;
+}
+.basic-grey .button {
+background: #E27575;
+border: none;
+padding: 10px 25px 10px 25px;
+color: #FFF;
+box-shadow: 1px 1px 5px #B6B6B6;
+border-radius: 3px;
+text-shadow: 1px 1px 1px #9E3F3F;
+cursor: pointer;
+margin-left:200px;
+}
+.basic-grey .button:hover {
+background: #f00;
+}
+</style>
+<script type="text/javascript">
+    function resize_window(){
+        $(".MainBar").width($(window).width()-150);
+    }
+    $(function(){
+        resize_window();
+        $(window).resize(function(){
+            resize_window();
+        })
+
+        $('#type').change(function(){
+            $('#typetext').text($('#type').val());
+        });
+        $('#content').change(function(){
+            $('#contenttext').text($('#content').val());
+        });
+        $('#fromname').blur(function(){
+            $('#fromtext').text($('#fromname').val());
+        });
+        $('.radio').click(function(){
+            $('#typetext').removeClass('c1 c2 c3 c4 c5 c6 c7');
+            $('#typetext').addClass('c'+$(this).val());
+        });
+    });
+</script>
+</head>
+<body onload="changeImg()">
+
+<form method="post" id="wishform2" class="basic-grey">
+	<h1>请假注册
+	<span>请认真填写请假信息.</span>
+</h1>
+	<label>
+		<span>姓名 :</span>
+		<input id="contentq" type="text" name="name" placeholder="请填写你的名字" />
+		
+	</label>
+	<small style="margin-left: 100px;" class="showenmsgs" id="showenmsg"></small>
+	<label>
+		<span>性别 :</span>
+		<input type="radio" name="sex" value="0"/>男
+		<input type="radio" name="sex" value="1"/>女
+	</label>
+		<br/>
+		
+            <label>
+               <span>开始日期 :</span>
+                <input type="text" name="start_time" class="am-form-field tpl-form-no-bg" placeholder="开始日期" data-am-datepicker="" readonly/>
+			</label>
+			<label>
+               <span>结束日期 :</span>
+                <input type="text" name="end_time" class="am-form-field tpl-form-no-bg" placeholder="结束日期" data-am-datepicker="" readonly/>
+			</label>
+                       
+	<label>
+		<span>所在班级 :</span>
+		<select name="class">
+				<option>php</option>
+				<option>前端</option>
+				<option>设计</option>
+				<option>JAVA</option>
+		</select>
+	</label>
+	<!-- <label>
+		<span>请假时间 :</span>
+		<input type="text"/>
+	</label> -->
+	<label>
+		<span>请假原因 :</span>
+		<textarea name="content" id="texte" style="resize: none;" ></textarea>
+	</label>
+	<small style="margin-left: 100px;" class="showenmsgs" id="showtext"></small>
+	<label>
+		<span>本人手机号 :</span>
+		<input type="text" id="tel" name="sphone"/>
+	</label>
+	<small style="margin-left: 100px;" class="showenmsgs" id="showtel"></small>
+	<label>
+		<span>家长手机号 :</span>
+		<input type="text" id="tell" maxlength="11" name="fphone" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+	</label>
+	<small style="margin-left: 100px;" class="showenmsgs" id="showtell"></small>
+<br/>
+
+<label>
+<span>&nbsp;</span>
+ <!-- <input type="button" id="button1" class="submit" value="我来许愿 +" id="Button1" onclick="return check()"/> -->
+ <input type="button" class="button" id="button1" value="Send" />
+       
+</label>
+</form>
+<script type="text/javascript">
+        $('#button1').click(function(){
+            var kong=$('#contentq').val();
+                if(!(/^[\u4E00-\u9FA5]{2,4}$/).test(kong))
+                {
+                  layer.msg('姓名格式不对', function(){
+						//关闭后的操作
+						});
+                    return false;
+                };
+                var texte=$('#texte').val();
+                if(!(/^[\u4E00-\u9FA5]{2,80}$/.test(texte)))
+                {
+                	layer.msg('请假内容格式不对', function(){
+						//关闭后的操作
+						});
+                    return false;
+                };
+                var tel=$('#tel').val();
+                if(!(/^1[3457]\d{9}$/.test(tel)))
+                {
+                	layer.msg('本人号码格式不对',function(){
+
+                	});
+                	return false;
+                };
+                var tell=$('#tell').val();
+                if(!(/^1[3457]\d{9}$/.test(tell)))
+                {
+                	layer.msg('家长号码格式不对',function(){
+
+                	});
+                	return false;
+                };
+                $.ajax({
+                	url:"{:url('Index/do_leavee')}",
+                	type:"POST",
+                	data:$('#wishform2').serialize(),
+                	success:function(result){
+	                		switch(result.status){
+	                        case 1:
+		                      layer.msg(result.msg,function(){
+
+                			});break;
+	                        case 2:
+	                        	layer.msg(result.msg,function(){
+
+                			});break;
+	                    }
+                	}
+                })
+        	})
+        </script>
+<script src="__STATIC__js/jquery.min.js"></script>
+<script src="__STATIC__js/amazeui.min.js"></script>
+</body>
+</html>

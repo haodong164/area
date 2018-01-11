@@ -1,0 +1,468 @@
+<html>
+	<head>
+	 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__css/manhuaDate.1.0.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__css/laydate.css">
+<script type="text/javascript" src="__STATIC__js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__STATIC__js/manhuaDate.1.0.js"></script>
+<script type="text/javascript" src="__STATIC__js/jquery.min.1.0.js"></script>
+<style>
+.basic-grey {
+	margin-left:auto;
+	margin-right:auto;
+	max-width: 500px;
+	background: #F7F7F7;
+	padding: 25px 15px 25px 10px;
+	font: 12px Georgia, "Times New Roman", Times, serif;
+	color: #888;
+	text-shadow: 1px 1px 1px #FFF;
+	border:1px solid #E4E4E4;
+}
+.basic-grey h1 {
+	font-size: 25px;
+	padding: 0px 0px 10px 40px;
+	display: block;
+	border-bottom:1px solid #E4E4E4;
+	margin: -10px -15px 30px -10px;;
+	color: #888;
+}
+.basic-grey h1>span {
+	display: block;
+	font-size: 11px;
+}
+.basic-grey label {
+	display: block;
+	margin: 0px;
+}
+.basic-grey label>span {
+	float: left;
+	width: 20%;
+	text-align: right;
+	padding-right: 10px;
+	margin-top: 10px;
+	color: #888;
+}
+.basic-grey input[type="text"],input[type="email"],input[type="password"],input[type="tel"],.basic-grey select {
+	border: 1px solid #DADADA;
+	color: #888;
+	height: 30px;
+	margin-bottom: 16px;
+	margin-right: 6px;
+	margin-top: 2px;
+	outline: 0 none;
+	padding: 3px 3px 3px 5px;
+	width: 70%;
+	font-size: 12px;
+	line-height:15px;
+	box-shadow: inset 0px 1px 4px #ECECEC;
+	-moz-box-shadow: inset 0px 1px 4px #ECECEC;
+	-webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+.basic-grey textarea{
+	padding: 5px 3px 3px 5px;
+}
+.basic-grey select {
+	background: #FFF url('down-arrow.png') no-repeat right;
+	background: #FFF url('down-arrow.png') no-repeat right;
+	appearance: none;
+	-webkit-appearance:none;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
+	width: 70%;
+	height: 35px;
+	line-height: 25px;
+}
+.basic-grey .submit {
+	background: #E27575;
+	border: none;
+	padding: 10px 25px 10px 25px;
+	color: #FFF;
+	box-shadow: 1px 1px 5px #B6B6B6;
+	border-radius: 3px;
+	text-shadow: 1px 1px 1px #9E3F3F;
+	cursor: pointer;
+	margin-left:220px;
+	text-align:center;
+}
+.basic-grey .submit:hover {
+	background: #CF7A7A
+}
+</style>
+		<title>
+			学生信息
+		</title>
+		
+
+	</head>
+<body>
+	<form action="" id="leave" method="post" class="basic-grey" enctype="multipart/form-data">
+	<!-- <form action="{:url('Index/do_add')}" id="leave" method="post" class="basic-grey" enctype="multipart/form-data"> -->
+		<h1>学生信息
+			<span></span>
+		</h1>
+		<label>
+			<span>姓名 :</span>
+			<input id="name" type="text" name="username" placeholder="请输入姓名" />
+			<div style="margin-left:25%" id="showenmsg"></div>
+			<label>
+				<span>班级 :</span>
+				<select name="class">
+					<option value="1504">1504</option>
+					<option value="16319">16319</option>
+					<option value="16320">16320</option>
+					<option value="16321">16321</option>
+				</select>
+			</label>
+			
+			<label>
+				<span>宿舍 :</span>
+				<select name="dormitoryid">
+					<?php for($i=601;$i<=631;$i++){ ?>
+					<option value="{$i}">{$i}</option>
+					<?php } ?>
+				</select>
+			</label>
+			
+			<label>
+				<span>民族 :</span>
+				<select name="nation">
+					{foreach item="v" name="vo"}
+					<option value="{$v['mzname']}">{$v['mzname']}</option>
+					{/foreach}
+				</select>
+			</label>
+			
+			<label>
+				<span>专业 :</span>
+				<select name="major">
+					<option value="PHP">PHP</option>
+					<option value="JAVA">JAVA</option>
+					<option value="设计">设计</option>
+					<option value="前端">前端</option>
+				</select>
+			</label>
+			
+			<label>
+				<span>性别 :</span>
+					<input type="radio" value="男" name="sex" checked>男
+					<input type="radio" value="女" name="sex">女
+			</label>
+				<br/>
+			<label>
+				<span>出生日期 :</span>
+				<input name="date" type="text" style="width:100px" class="demo-input" placeholder="请选择日期" id="test1">
+			</label>
+			
+			<label>
+				<span>头像:</span>
+				<input name="photo" type="file">
+			</label>
+			
+			<label>
+				<span>家长姓名:</span>
+				<input name="famname" maxlength="11" type="text" id="fname" placeholder="请输入家长姓名">
+				<div style="margin-left:25%;" id="showfname"></div>
+			</label>
+			
+			<label>
+				<span>身份证号码:</span>
+				<input name="idcate" maxlength="18" type="text" id="idcate" placeholder="请输入身份证号码">
+				<div style="margin-left:25%;" id="showidcate"></div>
+			</label>
+			
+			<label>
+				<span>家庭住址:</span>
+				<input name="adress" type="text" id="adress" placeholder="请输入家庭住址">
+				<div style="margin-left:25%;" id="showadress"></div>
+			</label>
+			
+			<label>
+				<span>户籍所在地:</span>
+				<input name="hujiadress" type="text" id="hujiadress" placeholder="请输入身份证所在地">
+				<div style="margin-left:25%;" id="showhujiadress"></div>
+			</label>
+
+			<label>
+				<span>现地区 :</span>
+				<select style="width:20%;height:30px" name="pro" id="pro">
+					{foreach name="region" item="vo"}
+					<option value="{$vo.region_name}">{$vo.region_name}</option>
+					{/foreach}
+				</select>
+
+				<select style="width:20%;height:30px" name="city" id="city">
+					<option></option>
+				</select>
+
+				<select style="width:20%;height:30px" name="area" id="area">
+					<option></option>
+				</select>
+			</label>
+
+			<label>
+				<span>学生手机号:</span>
+				<input name="stutel" maxlength="11" type="text" id="sphone" placeholder="请输入手机号">
+				<div style="margin-left:25%;" id="showsphone"></div>
+			</label>
+			
+			<label>
+				<span>微信号:</span>
+				<input name="weixin" type="text" id="" placeholder="请输入微信号">
+				<div style="margin-left:25%;" id=""></div>
+			</label>
+			
+			<label>
+				<span>QQ号:</span>
+				<input name="qq" maxlength="11" type="text" id="" placeholder="请输入QQ号">
+				<div style="margin-left:25%;" id=""></div>
+			</label>
+			
+			<label>
+				<span>邮箱:</span>
+				<input name="email" type="email" id="email" placeholder="请输入邮箱号">
+				<div style="margin-left:25%;" id="showemail"></div>
+			</label>
+			
+			<label>
+				<span>家长手机号:</span>
+				<input name="famtel" maxlength="11" id="fphone" type="text" placeholder="家长手机号"/>
+				<div style="margin-left:25%;" id="showfphone"></div>
+			</label>
+			
+				<input type="button" id="button" class="submit" value="提交" />
+								
+		</label> 
+
+</form>
+<script src="__STATIC__js/laydate.js"></script>
+<script>
+	lay('#version').html('-v'+ laydate.v);
+	laydate.render({
+	  elem: '#test1' //指定元素
+});
+</script>
+
+<script type="text/javascript" src="/public/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/public/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/public/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+	$(function(){
+	//判断请假人
+	//  $('#name').blur(function(){
+	// 	var name=$(this).val();
+	// 	$.ajax({
+	// 		url:"{:url('Index/dododo')}",
+	// 		type:"POST",
+	// 		data:{name:name},
+	// 		success:function(result){
+	// 			switch(result.status){
+    //                 case 1:
+	// 					$('#showenmsg').html('请输入请假人');
+	// 					$('#showenmsg').css('color','red');
+	// 					$('.submit').attr('disabled',true);break;
+    //                 case 2:
+	// 					$('#showenmsg').html('');
+	// 					$('.submit').attr('disabled',false);
+    //             }
+	// 		},
+	// 		error:function(){
+	// 			alert('fail');
+	// 		},
+	// 	});
+	//  });
+	 
+	
+	 
+	// 判断家庭住址
+	//  $('#adress').blur(function(){
+	// 	var name=$(this).val();
+	// 	$.ajax({
+	// 		url:"{:url('Index/adress')}",
+	// 		type:"POST",
+	// 		data:{name:name},
+	// 		success:function(result){
+	// 			switch(result.status){
+    //                 case 1:
+	// 					$('#showadress').html('请输入家庭住址');
+	// 					$('#showadress').css('color','red');
+	// 					$('.submit').attr('disabled',true);break;
+    //                 case 2:
+	// 					$('#showadress').html('');
+	// 					$('.submit').attr('disabled',false);
+    //             }
+	// 		},
+	// 		error:function(){
+	// 			alert('fail');
+	// 		},
+	// 	});
+	//  });
+
+
+	 //判断户籍
+	//  $('#hujiadress').blur(function(){
+	// 	var name=$(this).val();
+	// 	$.ajax({
+	// 		url:"{:url('Index/hujiadress')}",
+	// 		type:"POST",
+	// 		data:{name:name},
+	// 		success:function(result){
+	// 			switch(result.status){
+    //                 case 1:
+	// 					$('#showhujiadress').html('请输入户籍所在地');
+	// 					$('#showhujiadress').css('color','red');
+	// 					$('.submit').attr('disabled',true);break;
+    //                 case 2:
+	// 					$('#showhujiadress').html('');
+	// 					$('.submit').attr('disabled',false);
+    //             }
+	// 		},
+	// 		error:function(){
+	// 			alert('fail');
+	// 		},
+	// 	});
+	//  });
+	 
+		
+		//判断手机号
+
+			// var inpEle = document.getElementById('sphone');
+			// var myreg = /^1\d{10}$/;
+			// inpEle.onblur = function(){
+			// 	var inpVal = this.value;
+			// 	if (!myreg.exec(inpVal)){
+			// 		$('#showsphone').html('请输入手机号');
+			// 		$('#showsphone').css('color','red');
+			// 		$('.submit').attr('disabled',true);
+			// 		return false;
+			// 	}else{
+			// 		$('#showsphone').html('');
+			// 		$('.submit').attr('disabled',false);
+			// 	}
+			// };
+			
+			
+			// var inpEle = document.getElementById('fphone');
+			// var myreg = /^1\d{10}$/;
+			// inpEle.onblur = function(){
+			// 	var inpVal = this.value;
+			// 	if (!myreg.exec(inpVal)){
+			// 		$('#showfphone').html('请输入手机号');
+			// 		$('#showfphone').css('color','red');
+			// 		$('.submit').attr('disabled',true);
+			// 		return false;
+			// 	}else{
+			// 		$('#showfphone').html('');
+			// 		$('.submit').attr('disabled',false);
+			// 	};
+			// };
+			//身份证号
+			// var inpEle = document.getElementById('idcate');
+			// var abc = /^\d{17}([0-9]|x)$/;
+			// inpEle.onblur = function(){
+			// 	var inpVal = this.value;
+			// 	if (!abc.exec(inpVal)){
+			// 		$('#showidcate').html('请输入正确的身份证号');
+			// 		$('#showidcate').css('color','red');
+			// 		$('.submit').attr('disabled',true);
+			// 		return false;
+			// 	}else{
+			// 		$('#showidcate').html('');
+			// 		$('.submit').attr('disabled',false);
+			// 	};
+			// };
+			
+			//邮箱
+			// var inpEle = document.getElementById('email');
+			// var email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			// inpEle.onblur = function(){
+			// 	var inpVal = this.value;
+			// 	if (!email.exec(inpVal)){
+			// 		$('#showemail').html('请输入正确的邮箱');
+			// 		$('#showemail').css('color','red');
+			// 		$('.submit').attr('disabled',true);
+			// 		return false;
+			// 	}else{
+			// 		$('#showemail').html('');
+			// 		$('.submit').attr('disabled',false);
+			// 	};
+			// };
+			
+			//家长姓名
+			// var inpEle = document.getElementById('famname');
+			// var famname = /^[u4E00-u9FA5]+$/;
+			// inpEle.onblur = function(){
+			// 	var inpVal = this.value;
+			// 	if (!famname.exec(inpVal)){
+			// 		$('#showfamname').html('请输入正确的姓名');
+			// 		$('#showfamname').css('color','red');
+			// 		$('.submit').attr('disabled',true);
+			// 		return false;
+			// 	}else{
+			// 		$('#showfamname').html('');
+			// 		$('.submit').attr('disabled',false);
+			// 	};
+			// };
+$('#pro').change(function(){
+	$('#city option').remove();
+	$('#area option').remove();
+	var pro_id='pro_id='+$('#pro').val();
+    $.ajax({
+        url:"{:url('Index/pro')}",
+        type:"POST",
+        data:pro_id,
+        success:function(data){
+            $('#city').html(data);
+        },
+		error:function(){
+			alert('fail');
+		}
+    });
+});
+$('#city').change(function(){
+	var pro_id='pro_id='+$('#city').val();
+    $.ajax({
+        url:"{:url('Index/area')}",
+        type:"post",
+        data:pro_id,
+        success:function(data){
+            $('#area').html(data);
+        }
+    });
+});
+	$("#button").click(function(){
+		var form = new FormData(document.getElementById("leave"));
+		$.ajax({
+			url:"{:url('Index/do_adds')}",
+			type:"POST",
+			data:form,
+			processData: false,
+   			contentType: false,
+			success:function(data){
+				// switch(data.status){
+                //    case 1 :alert(data.msg);break;
+                //     case 2 :alert(data.msg);
+				// 	// location.href="{:url('Index/index')}";
+                // }
+				alert(data.msg);
+				// if(data.status==2){
+				// 	alert(data.msg);
+				// 	location.href="{:url('Index/index')}"
+				// }else{
+				// 	alert(data.msg);
+				// }
+				
+			},
+			error:function(){
+				alert('无连接');
+			},
+		});
+	});
+
+	})
+
+</script>
+
+
+</body>
+</html>
